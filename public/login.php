@@ -13,7 +13,7 @@
     if(isset($_GET['erreur'])){
       $err = $_GET['erreur'];
       if($err == 1){
-        echo"<p>Login ou password incorrecte</p>"
+        echo"<p>Login ou password incorrecte</p>";
       }
     }
   ?>
