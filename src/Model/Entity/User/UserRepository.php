@@ -119,4 +119,15 @@ class UserRepository
         return $users;
     }
 
+    public function userExist($login,$pwd){
+      $stmt = $this->connection->prepare(
+        'Select * from "user" where login = :login and mdp = :mdp'
+      );
+      $stmt->bindValue(':login', $login, \PDO::PARAM_STR);
+      $stmt->bindValue(':mdp', $pwd, \PDO::PARAM_STR);
+      $stmt->execute();
+      $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+      return !empty($rows);
+    }
+
 }

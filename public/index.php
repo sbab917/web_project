@@ -1,6 +1,8 @@
 
 
-<?php include('../src/View/header.php') ?>
+<?php
+include('../src/View/header.php');
+ ?>
 
 <div class="container">
     <h3>Pokedex</h3>
