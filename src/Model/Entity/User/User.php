@@ -1,5 +1,5 @@
 <?php
-namespace User;
+namespace Model\Entity\User;
 
 class User
 {
@@ -11,23 +11,26 @@ class User
     /**
      * @var string
      */
+    private $login;
+
+    /**
+     * @var string
+     */
     private $firstname;
 
     /**
      * @var string
      */
     private $lastname;
-
     /**
-     * @var \DateTimeInterface
+     * @var string
      */
-    private $birthday;
+    private $mdp;
 
     /**
      * @return int
      */
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
 
@@ -38,6 +41,24 @@ class User
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * @param string $login
+     * @return User
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
         return $this;
     }
 
@@ -77,21 +98,22 @@ class User
         return $this;
     }
 
+
     /**
-     * @return \DateTimeInterface
+     * @return string
      */
-    public function getBirthday(): \DateTimeInterface
+    public function getMdp()
     {
-        return $this->birthday;
+        return $this->mdp;
     }
 
     /**
-     * @param \DateTimeInterface $birthday
+     * @param string $mdp
      * @return User
      */
-    public function setBirthday(\DateTimeInterface $birthday)
+    public function setMdp($mdp)
     {
-        $this->birthday = $birthday;
+        $this->mdp = $mdp;
         return $this;
     }
 
@@ -100,7 +122,7 @@ class User
      * @return int
      * @throws \Exception
      */
-    public function getAge(): int
+  /*  public function getAge(): int
     {
         $now = new \DateTime();
 
@@ -109,6 +131,5 @@ class User
         }
 
         return $now->diff($this->getBirthday())->y;
-    }
+    }*/
 }
-
