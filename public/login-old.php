@@ -9,6 +9,7 @@
   <label>Password :</label>
   <input type="text" name="pwd" id="pwd">
   <button type="submit">Valider</button>
+  <input id="action" name="action" type="hidden" value="loginAction">
   <?php
     if(isset($_GET['erreur'])){
       $err = $_GET['erreur'];

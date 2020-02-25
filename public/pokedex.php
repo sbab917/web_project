@@ -3,6 +3,7 @@
 <div class="container">
 
   <form method="post" id="search">
+    <label for="login"><b>Login :</b></label>
     <input type="text" name="name" id="name">
     <button type="submit">Valider</button>
   </form>
@@ -12,8 +13,8 @@
         <thead>
           <tr>
             <th data-name="id">#</th>
-            <th data-name="firstname">Nom Pokemon</th>
-            <th data-name="lastname">Type</th>
+            <th data-name="login">Nom Pokemon</th>
+            <th data-name="mdp">Type</th>
           </tr>
         </thead>
       </table>
@@ -40,8 +41,8 @@ $(document).ready(function () {
     },
     "columns": [
       {"data": "id"},
-      {"data": "firstname"},
-      {"data": "lastname"}
+      {"data": "login"},
+      {"data": "mdp"}
     ],
     "lengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Tous"]],
     "pageLength": 25

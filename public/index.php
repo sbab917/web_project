@@ -28,6 +28,4 @@ include('../src/View/header.php');
 
 <script>
 
-
-
 </script>

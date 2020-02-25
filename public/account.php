@@ -12,8 +12,8 @@
         <thead>
           <tr>
             <th data-name="id">#</th>
-            <th data-name="firstname">Nom</th>
-            <th data-name="lastname">Nom</th>
+            <th data-name="login">Nom</th>
+            <th data-name="mdp">Nom</th>
           </tr>
         </thead>
       </table>
@@ -40,8 +40,8 @@ $(document).ready(function () {
     },
     "columns": [
       {"data": "id"},
-      {"data": "firstname"},
-      {"data": "lastname"}
+      {"data": "login"},
+      {"data": "mdp"}
     ],
     "lengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Tous"]],
     "pageLength": 25

@@ -1,21 +1,37 @@
 <?php
 include_once '../src/Bootstrap.php';
 
-$login = !empty($_POST['login']) ? $_POST['login'] : null;
-$pwd = !empty($_POST['pwd']) ? $_POST['pwd'] : null;
+$datas = $_POST;
+//var_dump($_POST);die;
+$action = !empty($datas['action']) ? $datas['action'] : null;
+$userRepository = new Model\Entity\User\UserRepository(\Db\Connection::get());
 
-if($login != null && $pwd != null){
-  $userRepository = new Model\Entity\User\UserRepository(\Db\Connection::get());
-  //Si la combinnaison login mdp existe renvoyer sur l'index avec la session enregistrer sinon retrourner sur la page avec un code erreur
-//$test = $userRepository->userExist($login,$pwd);
-//var_dump($test);die;
-  if($userRepository->userExist($login,$pwd)){
-    $_SESSION['user_login']=$login;
-    header('Location: pokedex.php');
+if($action == "loginAction"){
+  $login = !empty($datas['login']) ? $datas['login'] : null;
+  $pwd = !empty($datas['pwd']) ? $datas['pwd'] : null;
+  if($login != null && $pwd != null){
+    //Si la combinnaison login mdp existe renvoyer sur l'index avec la session enregistrer sinon retrourner sur la page avec un code erreur
+    if($userRepository->userExist($login,$pwd)){
+      $_SESSION['user_login']=$login;
+      header('Location: pokedex.php');
+    }else{
+      header('Location: pokedex.php?erreur=1');
+    }
   }else{
-    header('Location: login.php?erreur=1');
+    header('Location: pokedex.php?erreur=1');
   }
+}elseif ($action == "inscriptionAction") {
+
+  $login = !empty($datas['login']) ? $datas['login'] : null;
+  $pwd = !empty($datas['pwd']) ? $datas['pwd'] : null;
+
+  if($login != null && $pwd != null){
+      $userRepository->inscriptionUser($login,$pwd,$nom,$prenom);
+      header('Location: pokedex.php');
+  }else{
+    header('Location: inscription.php?erreur=1');
+  }
+
 }
-var_dump($pwd);die;
 
 ?>

@@ -40,11 +40,25 @@ if(isset($_GET['logout'])){
           <li><a href="/pokedex.php">Pokedex</a></li>
         <?php if(isset($_SESSION["user_login"])): ?>
           <li><a href="/account.php">Account</a></li>
-          <li><a href="/pokedex.php?logout=true">Logout</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" style="display:inline;">
+            <li><a href="/pokedex.php?logout=true">Logout</a></li>
+          </ul>
         <?php else:?>
-          <li><a href="login.php">Login</a></li>
-          <li><a href="inscription.php">Inscription</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" style="display:inline;">
+            <li style="margin-right:5px;"><button class="button-login" onclick="document.getElementById('id02').style.display='block'"> <span class="glyphicon glyphicon-log-in"></span> Login &nbsp;</button></li>
+            <li><button class="button-signup" onclick="document.getElementById('id01').style.display='block'"> <span class="glyphicon glyphicon-user"></span> Sign Up</button></li>
+          </ul>
         <?php endif;?>
-        </ul>
+
       </div>
     </nav>
+  <?php if(isset($_GET['erreur'])): ?>
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <p><?php echo"Mauvaise information"; ?></p>
+    </div>
+  <?php endif; ?>

@@ -16,15 +16,6 @@ class User
     /**
      * @var string
      */
-    private $firstname;
-
-    /**
-     * @var string
-     */
-    private $lastname;
-    /**
-     * @var string
-     */
     private $mdp;
 
     /**
@@ -61,43 +52,6 @@ class User
         $this->login = $login;
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string $firstname
-     * @return User
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     * @return User
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-        return $this;
-    }
-
 
     /**
      * @return string
