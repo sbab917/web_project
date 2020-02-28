@@ -85,7 +85,7 @@ class UserRepository
         $txtrequete = 'Select * from "user"';
 
         if($login != null){
-          $txtrequete .="where login = :login";
+          $txtrequete .="where login LIKE '%".$login."%'";
         }
         //Switch case pour l'order by les numero corresponde a l'odre des colonne dans le datatable de la vue
         switch ($order_column) {
@@ -101,9 +101,9 @@ class UserRepository
         }
 
         $stmt = $this->connection->prepare($txtrequete);
-        if($login != null){
+      /*  if($login != null){
           $stmt->bindValue(':login', $login, \PDO::PARAM_STR);
-        }
+        }*/
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         $users = [];
@@ -137,7 +137,7 @@ class UserRepository
       $stmt->bindValue(':login', $login, \PDO::PARAM_STR);
       $stmt->bindValue(':mdp', $pwd, \PDO::PARAM_STR);
       $stmt->execute();
-      $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+      //$rows = $stmt->fetchAll(PDO::FETCH_OBJ);
       return;
     }
 

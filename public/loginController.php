@@ -26,10 +26,11 @@ if($action == "loginAction"){
   $pwd = !empty($datas['pwd']) ? $datas['pwd'] : null;
 
   if($login != null && $pwd != null){
-      $userRepository->inscriptionUser($login,$pwd,$nom,$prenom);
+      $userRepository->inscriptionUser($login,$pwd);
+      //var_dump($userRepository->userExist($login,$pwd));die;
       header('Location: pokedex.php');
   }else{
-    header('Location: inscription.php?erreur=1');
+    header('Location: pokedex.php?erreur=1');
   }
 
 }

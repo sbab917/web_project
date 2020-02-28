@@ -2,23 +2,83 @@
 
 <div class="container">
 
+  <div class="row">
+    <h1><b>Recherche</b></h1>
+  </div>
+
+
+
   <form method="post" id="search">
-    <label for="login"><b>Login :</b></label>
-    <input type="text" name="name" id="name">
-    <button type="submit">Valider</button>
-  </form>
-    <div id="printresult">
-      <h3>Résultat de la recherche</h3>
-      <table class="table table-striped table-sm table-bordered table-hover" id="table-print">
-        <thead>
-          <tr>
-            <th data-name="id">#</th>
-            <th data-name="login">Nom Pokemon</th>
-            <th data-name="mdp">Type</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="login"><b>Nom du pokemon :</b></label>
+        <input type="text" name="name" id="name">
+        <label for="type1"><b>Type 1:</b></label>
+        <select name="type1" id="type1" class="browser-default custom-select">
+          <option value=""></option>
+          <option value="grass">Plante</option>
+          <option value="poison">Poison</option>
+          <option value="dark">Ténébre</option>
+          <option value="bug">Insecte</option>
+          <option value="electric">Electrique</option>
+          <option value="fairy">Fée</option>
+          <option value="fight">Combat</option>
+          <option value="fire">Feu</option>
+          <option value="flying">Vol</option>
+          <option value="ghost">Spectre</option>
+          <option value="ground">Sol</option>
+          <option value="ice">Glace</option>
+          <option value="normal">Normal</option>
+          <option value="psychic">Psy</option>
+          <option value="rock">Roche</option>
+          <option value="steel">Acier</option>
+          <option value="water">Eau</option>
+        </select>
+        <br><br>
+        <label for="type2"><b>Type 2:</b></label>
+        <select name="type2" id="type2" class="browser-default custom-select">
+          <option value=""></option>
+          <option value="grass">Plante</option>
+          <option value="poison">Poison</option>
+          <option value="dark">Ténébre</option>
+          <option value="bug">Insecte</option>
+          <option value="electric">Electrique</option>
+          <option value="fairy">Fée</option>
+          <option value="fight">Combat</option>
+          <option value="fire">Feu</option>
+          <option value="flying">Vol</option>
+          <option value="ghost">Spectre</option>
+          <option value="ground">Sol</option>
+          <option value="ice">Glace</option>
+          <option value="normal">Normal</option>
+          <option value="psychic">Psy</option>
+          <option value="rock">Roche</option>
+          <option value="steel">Acier</option>
+          <option value="water">Eau</option>
+        </select>
+        <br><br>
+      </div>
     </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Valider</button>
+    </div>
+
+
+  </form>
+
+  <div id="printresult">
+    <h3>Résultat de la recherche</h3>
+    <table class="table table-striped table-sm table-bordered table-hover" id="table-print">
+      <thead>
+        <tr>
+          <th data-name="pokedex_number">#</th>
+          <th data-name="french_name">Nom Pokemon</th>
+          <th data-name="type1">Type</th>
+          <th data-name="type2">Type</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 
 </div>
 
@@ -34,18 +94,21 @@ $(document).ready(function () {
       "url": "ApplicationController.php",
       data: function (d) {
         d.name = $("#name").val();
+        d.type1 = $("#type1").val();
+        d.type2 = $("#type2").val();
         d.action = "search";
         return d;
       },
       "type": "POST"
     },
     "columns": [
-      {"data": "id"},
-      {"data": "login"},
-      {"data": "mdp"}
+      {"data": "pokedex_number"},
+      {"data": "french_name"},
+      {"data": "type1"},
+      {"data": "type2"}
     ],
-    "lengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Tous"]],
-    "pageLength": 25
+    "lengthMenu": [[ -1], [ "Tous"]],
+    "pageLength": -1
   });
 
   $("#search").on("submit", function () {
