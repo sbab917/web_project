@@ -1,17 +1,32 @@
 <?php include('../src/View/header.php') ?>
 
 <?php if(isset($_GET['id'])){
-        $pokemonRepository = new Model\Entity\Pokemon\PokemonRepository(\Db\Connection::get());
-        $pokemon = $pokemonRepository->findById($_GET['id']);
+        if($_GET['id'] != ''){
+          $pokemonRepository = new Model\Entity\Pokemon\PokemonRepository(\Db\Connection::get());
+          $favoriteRepository = new Model\Entity\Favorie\FavorieRepository(\Db\Connection::get());
+          //FAIRE TEST SI LE POKEMON N'EXISTE PAS + EXPRESSION REGULIERE POUR EVITER DE CHERCHE NIMPIRTE QUOI AVEC L'URL
+          $id_pokemon = $_GET['id'];
+          $pokemon = $pokemonRepository->findById($id_pokemon);
+        }else{
+          header('Location: pokedex.php');
+        }
       }else{
         header('Location: pokedex.php');
       }
-      //var_dump($pokemon);
+      //var_dump($_SESSION["user_login"]);die;
+      //var_dump($favoriteRepository->isFavorie($_GET['id'],$_SESSION["user_login"]));
 ?>
 <div class="container">
 
-  <div class="row">
-    <h1><?php echo $pokemon->getFrench_Name();?></h1>
+  <div class="row" id="divFav">
+    <h1><?php echo $pokemon->getFrench_Name();?></h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <?php if(isset($_SESSION["user_login"])): ?>
+      <?php if($favoriteRepository->isFavorie($_GET['id'],$_SESSION["user_login"])): ?>
+        <button type="button" class="btn btn-outline-default waves-effect" onclick="delFav();" id="btnDel"><span class="glyphicon glyphicon-star" style="color:red;"></span></button>
+      <? else:?>
+        <button type="button" class="btn btn-outline-default waves-effect" onclick="addFav();" id="btnAdd"><span class="glyphicon glyphicon-star" ></span></button>
+      <?php endif;?>
+    <?php endif;?>
   </div>
 
   <div class="row">
@@ -78,7 +93,7 @@
               <td><img src="/img/dragon.png"></td>
               <td><img src="/img/electric.png"></td>
               <td><img src="/img/fairy.png"></td>
-              <td><img src="/img/fight.png"></td>
+              <td><img src="/img/fighting.png"></td>
               <td><img src="/img/fire.png"></td>
               <td><img src="/img/flying.png"></td>
               <td><img src="/img/ghost.png"></td>
@@ -120,5 +135,43 @@
   </div>
 
 </div>
+<script type="text/javascript">
+
+  function addFav(){
+    var pokemon_id = "<?php echo $_GET['id'];?>";
+    var id_user = "<?php echo $_SESSION["user_login"];?>";
+
+    $.ajax({
+      url:'ApplicationController.php',
+      dataType:'html',
+      data:{action: "addFav",pokemon_id:pokemon_id, id_user: id_user},
+      type:"POST",
+      success: function (data, statut){
+        var mydiv = document.getElementById('divFav');
+        mydiv.insertAdjacentHTML('beforeend', data);
+        document.getElementById('btnAdd').remove();
+        //alert(data);
+      }
+    });
+  }
+
+  function delFav(){
+    var pokemon_id = "<?php echo $_GET['id'];?>";
+    var id_user = "<?php echo $_SESSION["user_login"];?>";
+
+    $.ajax({
+      url:'ApplicationController.php',
+      dataType:'html',
+      data:{action: "delFav",pokemon_id:pokemon_id, id_user: id_user},
+      type:"POST",
+      success: function (data, statut){
+        var mydiv = document.getElementById('divFav');
+        mydiv.insertAdjacentHTML('beforeend', data);
+        document.getElementById('btnDel').remove();
+      }
+    });
+  }
+
+</script>
 
 <?php include('../src/View/footer.php') ?>

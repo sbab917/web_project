@@ -6,8 +6,6 @@
     <h1><b>Recherche</b></h1>
   </div>
 
-
-
   <form method="post" id="search">
     <div class="row">
       <div class="col-md-12">
@@ -22,7 +20,7 @@
           <option value="bug">Insecte</option>
           <option value="electric">Electrique</option>
           <option value="fairy">Fée</option>
-          <option value="fight">Combat</option>
+          <option value="fighting">Combat</option>
           <option value="fire">Feu</option>
           <option value="flying">Vol</option>
           <option value="ghost">Spectre</option>
@@ -44,7 +42,7 @@
           <option value="bug">Insecte</option>
           <option value="electric">Electrique</option>
           <option value="fairy">Fée</option>
-          <option value="fight">Combat</option>
+          <option value="fighting">Combat</option>
           <option value="fire">Feu</option>
           <option value="flying">Vol</option>
           <option value="ghost">Spectre</option>

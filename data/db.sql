@@ -1,7 +1,13 @@
 CREATE TABLE "user"(
     id SERIAL PRIMARY KEY ,
-    login VARCHAR NOT NULL ,
+    login VARCHAR UNIQUE NOT NULL ,
     mdp VARCHAR NOT NULL
+);
+
+CREATE TABLE "favorie"(
+    id_user  VARCHAR NOT NULL,
+    id_pokemon INTEGER,
+    PRIMARY KEY(id_user,id_pokemon)
 );
 
 INSERT INTO "user"(login,  mdp) VALUES ('john.doe','test');

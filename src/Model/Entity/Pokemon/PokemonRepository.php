@@ -78,18 +78,26 @@ class PokemonRepository{
         $txtrequete .="where french_name LIKE '%".$nom."%'";
         $count++;
       }
-      if($type1 != null && $count < 1){
-        $txtrequete .="where type1 LIKE '%".$type1."%'";
+      if($type1 != null && $type2 != null && $count < 1){
+        $txtrequete .="where (type1 LIKE '%".$type1."%' and type2 LIKE '".$type2."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
         $count++;
-      }elseif($type1 != null) {
-        $txtrequete .="and type1 LIKE '".$type1."'";
+      }elseif($type1 != null && $type2 != null) {
+        $txtrequete .="and (type1 LIKE '".$type1."' and type2 LIKE '".$type1."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
+      }else{
+        if($type1 != null && $count < 1){
+          $txtrequete .="where type1 LIKE '%".$type1."%' or type2 LIKE '".$type1."'";
+          $count++;
+        }elseif($type1 != null) {
+          $txtrequete .="and type1 LIKE '".$type1."' or type2 LIKE '".$type1."'";
+        }
+        if($type2 != null  && $count < 1){
+          $txtrequete .="where type2 LIKE '".$type2."' or type1 LIKE '".$type2."'";
+          $count++;
+        }elseif($type2 != null ) {
+          $txtrequete .="and type2 LIKE '".$type2."' or type1 LIKE '".$type2."'";
+        }
       }
-      if($type2 != null  && $count < 1){
-        $txtrequete .="where type2 LIKE '".$type2."'";
-        $count++;
-      }elseif($type2 != null ) {
-        $txtrequete .="and type2 LIKE '".$type2."'";
-      }
+
       //Switch case pour l'order by les numero corresponde a l'odre des colonne dans le datatable de la vue
       switch ($order_column) {
         case 0 :

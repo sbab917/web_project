@@ -33,6 +33,9 @@ if($action == "loginAction"){
     header('Location: pokedex.php?erreur=1');
   }
 
+}else{
+  header('Location: pokedex.php');
 }
+
 
 ?>

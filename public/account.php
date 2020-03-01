@@ -1,5 +1,12 @@
 <?php include('../src/View/header.php') ?>
 
+
+<?php if(!isset($_SESSION["user_login"])){
+        header('Location: pokedex.php');
+      }
+      //var_dump($_SESSION["user_login"]);die;
+
+?>
 <div class="container">
 
   <form method="post" id="search">
@@ -11,9 +18,10 @@
       <table class="table table-striped table-sm table-bordered table-hover" id="table-print">
         <thead>
           <tr>
-            <th data-name="id">#</th>
-            <th data-name="login">Nom</th>
-            <th data-name="mdp">Nom</th>
+            <th data-name="pokedex_number">#</th>
+            <th data-name="french_name">Nom Pokemon</th>
+            <th data-name="type1">Type</th>
+            <th data-name="type2">Type</th>
           </tr>
         </thead>
       </table>
@@ -32,19 +40,20 @@ $(document).ready(function () {
     "ajax": {
       "url": "ApplicationController.php",
       data: function (d) {
-        d.name = $("#name").val();
-        d.action = "search";
+        d.id_user = "<?php echo $_SESSION["user_login"];?>";
+        d.action = "searchFav";
         return d;
       },
       "type": "POST"
     },
     "columns": [
-      {"data": "id"},
-      {"data": "login"},
-      {"data": "mdp"}
+      {"data": "pokedex_number"},
+      {"data": "french_name"},
+      {"data": "type1"},
+      {"data": "type2"}
     ],
-    "lengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Tous"]],
-    "pageLength": 25
+    "lengthMenu": [[ -1], [ "Tous"]],
+    "pageLength": -1
   });
 
   $("#search").on("submit", function () {

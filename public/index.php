@@ -2,6 +2,8 @@
 
 <?php
 include('../src/View/header.php');
+
+header('Location: pokedex.php');
  ?>
 
 <div class="container">
