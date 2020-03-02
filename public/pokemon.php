@@ -13,7 +13,7 @@
       }else{
         header('Location: pokedex.php');
       }
-      //var_dump($_SESSION["user_login"]);die;
+      //var_dump($pokemon);die;
       //var_dump($favoriteRepository->isFavorie($_GET['id'],$_SESSION["user_login"]));
 ?>
 <div class="container">

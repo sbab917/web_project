@@ -9,10 +9,6 @@
 ?>
 <div class="container">
 
-  <form method="post" id="search">
-    <input type="text" name="name" id="name">
-    <button type="submit">Valider</button>
-  </form>
     <div id="printresult">
       <h3>Résultat</h3>
       <table class="table table-striped table-sm table-bordered table-hover" id="table-print">

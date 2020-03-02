@@ -15,7 +15,6 @@ class PokemonRepository{
        return null;
      }
      $pokemon = new Pokemon();
-     //var_dump($row);die;
      $pokemon
          ->setAbilities($row->abilities)
          ->setAgainst_Bug($row->against_bug)
@@ -70,31 +69,36 @@ class PokemonRepository{
       $this->connection = $connection;
   }
 
-  public function search($nom, $type1, $type2,$start,$length,$order_column,$order_direction){
-      //$firstname = mysqli_real_escape_string($this->connection, $firstname);
-      $txtrequete = 'Select * from "pokemon"';
+  public function search($nom, $type1, $type2,$is_legendary, $start,$length,$order_column,$order_direction){
+      $txtrequete = 'Select * from "pokemon" ';
       $count= 0;
       if($nom != null){
-        $txtrequete .="where french_name LIKE '%".$nom."%'";
+        $txtrequete .="where french_name LIKE '%".$nom."%' ";
         $count++;
       }
+      if($is_legendary == 1 && $count < 1){
+        $txtrequete .=" where is_legendary = ".$is_legendary." ";
+        $count++;
+      }elseif($is_legendary == 1){
+        $txtrequete .=" and is_legendary = ".$is_legendary." ";
+      }
       if($type1 != null && $type2 != null && $count < 1){
-        $txtrequete .="where (type1 LIKE '%".$type1."%' and type2 LIKE '".$type2."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
+        $txtrequete .=" where (type1 LIKE '%".$type1."%' and type2 LIKE '".$type2."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
         $count++;
       }elseif($type1 != null && $type2 != null) {
-        $txtrequete .="and (type1 LIKE '".$type1."' and type2 LIKE '".$type1."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
+        $txtrequete .=" and (type1 LIKE '".$type1."' and type2 LIKE '".$type1."') or (type1 LIKE '%".$type2."%' and type2 LIKE '".$type1."') ";
       }else{
         if($type1 != null && $count < 1){
-          $txtrequete .="where type1 LIKE '%".$type1."%' or type2 LIKE '".$type1."'";
+          $txtrequete .=" where ( type1 LIKE '%".$type1."%' or type2 LIKE '".$type1."' )";
           $count++;
         }elseif($type1 != null) {
-          $txtrequete .="and type1 LIKE '".$type1."' or type2 LIKE '".$type1."'";
+          $txtrequete .=" and ( type1 LIKE '".$type1."' or type2 LIKE '".$type1."' )";
         }
         if($type2 != null  && $count < 1){
-          $txtrequete .="where type2 LIKE '".$type2."' or type1 LIKE '".$type2."'";
+          $txtrequete .=" where ( type2 LIKE '".$type2."' or type1 LIKE '".$type2."' )";
           $count++;
         }elseif($type2 != null ) {
-          $txtrequete .="and type2 LIKE '".$type2."' or type1 LIKE '".$type2."'";
+          $txtrequete .=" and ( type2 LIKE '".$type2."' or type1 LIKE '".$type2."' )";
         }
       }
 
@@ -119,7 +123,6 @@ class PokemonRepository{
       $stmt->execute();
       $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
       $pokemons = [];
-      //var_dump($rows);
       $type_2 ="";
       foreach ($rows as $row) {
           if($row->type2 !=""){

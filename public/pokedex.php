@@ -16,6 +16,7 @@
           <option value=""></option>
           <option value="grass">Plante</option>
           <option value="poison">Poison</option>
+          <option value="dragon">Dragon</option>
           <option value="dark">Ténébre</option>
           <option value="bug">Insecte</option>
           <option value="electric">Electrique</option>
@@ -38,6 +39,7 @@
           <option value=""></option>
           <option value="grass">Plante</option>
           <option value="poison">Poison</option>
+          <option value="dragon">Dragon</option>
           <option value="dark">Ténébre</option>
           <option value="bug">Insecte</option>
           <option value="electric">Electrique</option>
@@ -54,6 +56,9 @@
           <option value="steel">Acier</option>
           <option value="water">Eau</option>
         </select>
+        <br><br>
+        <label for="type1"><b>Légendaire:</b></label>
+        <input type="checkbox" id="is_legendary" name="is_legendary">
         <br><br>
       </div>
     </div>
@@ -95,6 +100,7 @@ $(document).ready(function () {
         d.type1 = $("#type1").val();
         d.type2 = $("#type2").val();
         d.action = "search";
+        d.legendary = document.getElementById("is_legendary").checked;
         return d;
       },
       "type": "POST"
