@@ -19,7 +19,7 @@
 <div class="container">
 
   <div class="row" id="divFav">
-    <h1><?php echo $pokemon->getFrench_Name();?></h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <h1>#<?php echo $pokemon->getPokedex_Number();?> <?php echo $pokemon->getFrench_Name();?></h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <?php if(isset($_SESSION["user_login"])): ?>
       <?php if($favoriteRepository->isFavorie($_GET['id'],$_SESSION["user_login"])): ?>
         <button type="button" class="btn btn-outline-default waves-effect" onclick="delFav();" id="btnDel"><span class="glyphicon glyphicon-star" style="color:red;"></span></button>
@@ -134,6 +134,68 @@
     </div>
   </div>
 
+  <br><br><br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">Information</div>
+        <table class="table table-condensed ">
+          <tr>
+            <td><b>Genre</b></td>
+            <td>
+            <?php if($pokemon->getPercentage_Male() != null):?>
+              <div class="progress" style="margin-bottom:0">
+                <div class="progress-bar progress-bar-info" style="width:<?php echo $pokemon->getPercentage_Male();?>%"><i class="fa fa-mars"></i></div>
+                <div class="progress-bar progress-bar-danger" style="width:<?php echo 100 - $pokemon->getPercentage_Male();?>%"><i class="fa fa-venus"></i></div>
+              </div>
+              <div class="small text-center">
+                Mâle : <?php echo $pokemon->getPercentage_Male();?>%
+                <br>
+                Femelle : <?php echo 100 - $pokemon->getPercentage_Male();?>%
+              </div>
+            <?php else:?>
+              <i>Sans Genre </i>
+            <?php endif;?>
+            </td>
+
+            <td><b>Generation</b></td>
+            <td><?php echo $pokemon->getGeneration();?></td>
+          </tr>
+
+          <tr>
+            <td><b>Abilité</b></td>
+            <td><?php echo $pokemon->getAbilities();?></td>
+
+            <td><b>Classification</b></td>
+            <td><?php echo $pokemon->getClassfication();?></td>
+          </tr>
+          <tr>
+            <td><b>Nombre de pas avant éclosion</b></td>
+            <td><?php echo $pokemon->getBase_Egg_Steps();?></td>
+
+            <td><b>Base Happiness</b></td>
+            <td><?php echo $pokemon->getBase_Happiness();?></td>
+          </tr>
+          <tr>
+            <td><b>Capture Rate</b></td>
+            <td><?php echo $pokemon->getCapture_Rate();?></td>
+
+            <td><b>Experience Growth</b></td>
+            <td><?php echo $pokemon->getExperience_Growth();?></td>
+          </tr>
+
+          <tr>
+            <td><b>Taille</b></td>
+            <td><?php echo $pokemon->getHeight_M();?> <b><i>M</i></b></td>
+
+            <td><b>Poid</b></td>
+            <td><?php echo $pokemon->getWeight_Kg();?> <b><i>Kg</i></b></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
 

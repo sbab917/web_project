@@ -14,7 +14,7 @@ if(isset($_GET['logout'])){
 
 <html>
 <head>
-
+    <link rel="stylesheet" href='/css/fontawesome/css/all.css' type="text/css">
     <link rel="stylesheet" href='/css/style.css' type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -34,10 +34,10 @@ if(isset($_GET['logout'])){
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.php">Poke-iien</a>
+          <a class="navbar-brand" href="pokedex.php">Poke-iien</a>
         </div>
         <ul class="nav navbar-nav" style="display:inline;">
-          <li class="active"><a href="index.php">Home</a></li>
+          <li class="active"><a href="pokedex.php">Home</a></li>
           <li><a href="/pokedex.php">Pokedex</a></li>
         <?php if(isset($_SESSION["user_login"])): ?>
           <li><a href="/account.php">Account</a></li>
