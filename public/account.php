@@ -10,7 +10,7 @@
 <div class="container">
 
     <div id="printresult">
-      <h3>Résultat</h3>
+      <h3>Vos Favoris</h3>
       <table class="table table-striped table-sm table-bordered table-hover" id="table-print">
         <thead>
           <tr>

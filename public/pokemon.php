@@ -22,15 +22,26 @@
     <h1>#<?php echo $pokemon->getPokedex_Number();?> <?php echo $pokemon->getFrench_Name();?></h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <?php if(isset($_SESSION["user_login"])): ?>
       <?php if($favoriteRepository->isFavorie($_GET['id'],$_SESSION["user_login"])): ?>
-        <button type="button" class="btn btn-outline-default waves-effect" onclick="delFav();" id="btnDel"><span class="glyphicon glyphicon-star" style="color:red;"></span></button>
+        <button type="submit" class="btn btn-info btn-lg waves-effect" onclick="delFav();" id="btnDel"><span class="glyphicon glyphicon-star" style="color:red;"></span></button>
       <? else:?>
-        <button type="button" class="btn btn-outline-default waves-effect" onclick="addFav();" id="btnAdd"><span class="glyphicon glyphicon-star" ></span></button>
+        <button type="submit" class="btn btn-info btn-lg waves-effect" onclick="addFav();" id="btnAdd"><span class="glyphicon glyphicon-star" ></span></button>
       <?php endif;?>
     <?php endif;?>
   </div>
 
   <div class="row">
       <div class="col-sm-6 col-xs-12">
+        <?php
+          if($pokemon->getPokedex_Number()<100){
+            if($pokemon->getPokedex_Number()<10){
+              echo '<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00'.$pokemon->getPokedex_Number().'.png">';
+            }else{
+              echo '<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0'.$pokemon->getPokedex_Number().'.png">';
+            }
+          }else{
+            echo '<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/'.$pokemon->getPokedex_Number().'.png">';
+          }
+        ?>
       </div>
       <div class="col-sm-6 col-xs-12">
         <div class="panel panel-info">
@@ -38,36 +49,36 @@
           <table class="table table-condensed text-center">
             <tr>
               <td>Type</td>
-              <td class="text-left"><img src="/img/<?php echo $pokemon->getType1();?>.png"></td>
-              <td class="text-left"><?php if($pokemon->getType2()!=""){echo '<img src="/img/'.$pokemon->getType2().'.png">';}?></td>
+              <td class="text"><img src="/img/<?php echo $pokemon->getType1();?>.png">
+              <?php if($pokemon->getType2()!=""){echo '<img src="/img/'.$pokemon->getType2().'.png">';}?></td>
             </tr>
             <tr>
               <td>HP</td>
-              <td class="text-left"><?php echo $pokemon->getHp();?></td>
+              <td class="text"><?php echo $pokemon->getHp();?></td>
             </tr>
             <tr>
               <td>Attaque</td>
-              <td class="text-left"><?php  echo $pokemon->getAttack();?></td>
+              <td class="text"><?php  echo $pokemon->getAttack();?></td>
             </tr>
             <tr>
               <td>Défensse</td>
-              <td class="text-left"><?php echo $pokemon->getDefense();?></td>
+              <td class="text"><?php echo $pokemon->getDefense();?></td>
             </tr>
             <tr>
               <td>Attaque spé	</td>
-              <td class="text-left"><?php echo $pokemon->getSp_Attack();?></td>
+              <td class="text"><?php echo $pokemon->getSp_Attack();?></td>
             </tr>
             <tr>
               <td>Défense spé</td>
-              <td class="text-left"><?php echo $pokemon->getSp_Defense();?></td>
+              <td class="text"><?php echo $pokemon->getSp_Defense();?></td>
             </tr>
             <tr>
               <td>Vitesse</td>
-              <td class="text-left"><?php echo $pokemon->getSpeed();?></td>
+              <td class="text"><?php echo $pokemon->getSpeed();?></td>
             </tr>
-            <tr>
+            <tr style="background-color:red; color:white;">
               <td><b>Total base state</b></td>
-              <td class="text-left"><?php echo $pokemon->getBase_Total();?></td>
+              <td class="text"><b><?php echo $pokemon->getBase_Total();?></b></td>
             </tr>
           </table>
 

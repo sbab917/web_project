@@ -3,27 +3,17 @@
 <?php
 include('../src/View/header.php');
 
-header('Location: pokedex.php');
+//header('Location: pokedex.php');
  ?>
 
 <div class="container">
-    <h3>Pokedex</h3>
+    <h1>Pokedex Online</h1>
+    <div class="row">
+      <p>Bienvenue sur le pokedex online, ce pokedex réferencie les 7G du jeu Pokémon.<br>
+         Le site a été fais par : Samuel BABOT, David Gola, Amine DJEBARI et Mehdi TAHRI
+          </p>
+    </div>
 
-    <table class="table table-bordered table-hover table-striped">
-        <thead style="font-weight: bold">
-            <td>#</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-        </thead>
-        <?php /** @var \User\User $user */
-        foreach ($users as $user) : ?>
-            <tr>
-                <td><?php echo $user->getId() ?></td>
-                <td><?php echo $user->getFirstname() ?></td>
-                <td><?php echo $user->getLastname() ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
 </div>
 
 <?php include('../src/View/footer.php') ?>
