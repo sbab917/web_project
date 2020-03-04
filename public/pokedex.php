@@ -93,6 +93,7 @@ $(document).ready(function () {
   var dt = $("#table-print").DataTable({
     "processing": true,
     "serverSide": true,
+    "bFilter": false,
     "ajax": {
       "url": "ApplicationController.php",
       data: function (d) {

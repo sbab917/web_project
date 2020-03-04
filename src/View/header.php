@@ -2,8 +2,6 @@
 
 require_once '../src/Bootstrap.php';
 
-//$userRepository = new Model\Entity\User\UserRepository(\Db\Connection::get());
-//$users = $userRepository->fetchAll();
 if(isset($_GET['logout'])){
   if($_GET['logout']==true){
     session_unset();
@@ -37,7 +35,7 @@ if(isset($_GET['logout'])){
           <a class="navbar-brand" href="pokedex.php">Poke-iien</a>
         </div>
         <ul class="nav navbar-nav" style="display:inline;">
-          <li class="active"><a href="pokedex.php">Home</a></li>
+          <li class="active"><a href="/">Home</a></li>
           <li><a href="/pokedex.php">Pokedex</a></li>
         <?php if(isset($_SESSION["user_login"])): ?>
           <li><a href="/account.php">Account</a></li>

@@ -73,7 +73,7 @@ class PokemonRepository{
       $txtrequete = 'Select * from "pokemon" ';
       $count= 0;
       if($nom != null){
-        $txtrequete .="where french_name LIKE '%".$nom."%' ";
+        $txtrequete .="where french_name ILIKE '%".$nom."%' ";
         $count++;
       }
       if($is_legendary == 1 && $count < 1){

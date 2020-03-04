@@ -1,18 +1,17 @@
-
-
 <?php
 include('../src/View/header.php');
 
 //header('Location: pokedex.php');
  ?>
 
-<div class="container">
+<div class="container"style="text-align: center;">
     <h1>Pokedex Online</h1>
-    <div class="row">
-      <p>Bienvenue sur le pokedex online, ce pokedex réferencie les 7G du jeu Pokémon.<br>
-         Le site a été fais par : Samuel BABOT, David Gola, Amine DJEBARI et Mehdi TAHRI
-          </p>
-    </div>
+    <br>
+    <img src="/img/indexPokedex.png">
+    <br>
+    <p>Bienvenue sur le pokedex online, ce pokedex réferencie les 7G du jeu Pokémon.<br>
+         Le site a été fais par : <b>Samuel BABOT, David GOLA, Amine DJEBARI et Mehdi TAHRI</b>
+    </p>
 
 </div>
 
