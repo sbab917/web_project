@@ -53,7 +53,7 @@
               <?php if($pokemon->getType2()!=""){echo '<img src="/img/'.$pokemon->getType2().'.png">';}?></td>
             </tr>
             <tr>
-              <td>HP</td>
+              <td>PV</td>
               <td class="text"><?php echo $pokemon->getHp();?></td>
             </tr>
             <tr>
@@ -61,7 +61,7 @@
               <td class="text"><?php  echo $pokemon->getAttack();?></td>
             </tr>
             <tr>
-              <td>Défensse</td>
+              <td>Défense</td>
               <td class="text"><?php echo $pokemon->getDefense();?></td>
             </tr>
             <tr>
@@ -77,7 +77,7 @@
               <td class="text"><?php echo $pokemon->getSpeed();?></td>
             </tr>
             <tr style="background-color:red; color:white;">
-              <td><b>Total base state</b></td>
+              <td><b>Total base stat</b></td>
               <td class="text"><b><?php echo $pokemon->getBase_Total();?></b></td>
             </tr>
           </table>
@@ -185,14 +185,14 @@
             <td><b>Nombre de pas avant éclosion</b></td>
             <td><?php echo $pokemon->getBase_Egg_Steps();?></td>
 
-            <td><b>Base Happiness</b></td>
+            <td><b>Bonheur</b></td>
             <td><?php echo $pokemon->getBase_Happiness();?></td>
           </tr>
           <tr>
-            <td><b>Capture Rate</b></td>
+            <td><b>Taux de capture</b></td>
             <td><?php echo $pokemon->getCapture_Rate();?></td>
 
-            <td><b>Experience Growth</b></td>
+            <td><b>Experience Max</b></td>
             <td><?php echo $pokemon->getExperience_Growth();?></td>
           </tr>
 
@@ -200,7 +200,7 @@
             <td><b>Taille</b></td>
             <td><?php echo $pokemon->getHeight_M();?> <b><i>M</i></b></td>
 
-            <td><b>Poid</b></td>
+            <td><b>Poids</b></td>
             <td><?php echo $pokemon->getWeight_Kg();?> <b><i>Kg</i></b></td>
           </tr>
         </table>

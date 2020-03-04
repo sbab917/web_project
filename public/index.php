@@ -10,7 +10,7 @@ include('../src/View/header.php');
     <img src="/img/indexPokedex.png">
     <br>
     <p>Bienvenue sur le pokedex online, ce pokedex réferencie les 7G du jeu Pokémon.<br>
-         Le site a été fais par : <b>Samuel BABOT, David GOLA, Amine DJEBARI et Mehdi TAHRI</b>
+         Le site a été fais par : <b>Samuel BABOT, David GOLA, Amine DJEBBARI et Mehdi TAHRI</b>
     </p>
 
 </div>
